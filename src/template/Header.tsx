@@ -12,7 +12,7 @@ const resources = [
   {
     name: "NTLH",
     description: "Nova Tradução na Linguagem de Hoje",
-    href: "#",
+    href: "NTLH",
   },
 ];
 const recentPosts = [
@@ -48,7 +48,7 @@ export function Header() {
           </div>
           <Popover.Group as="nav" className="hidden md:flex space-x-4">
             <a
-              href="#"
+              href="version/AM"
               className="text-base font-medium text-zinc-300 hover:text-zinc-100 px-2 py-2"
             >
               A Mensagem

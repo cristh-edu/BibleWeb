@@ -22,18 +22,10 @@ export function Bible() {
     <>
       <Header />
       <section className="bg-white dark:bg-zinc-900">
-        <div className="container px-6 py-12 mx-auto">
-          <h1 className="text-2xl font-bold text-center text-gray-800 lg:text-5xl dark:text-white">
-            {version.name}
-          </h1>
-
-          <h3 className="mt-2 text-2xl font-normal text-center text-gray-800 lg:text-2xl dark:text-white">
-            {version.description}
-          </h3>
-
-          <div className="mt-8 xl:mt-16 lg:flex lg:-mx-12">
-            <div className="lg:mx-12">
-              <h1 className="text-xl font-semibold text-gray-800 dark:text-white">
+        <div className="container px-6 py-1 mx-auto">
+          <div className="mt-8 xl:mt-6 lg:flex lg:-mx-12">
+            <div className="lg:mx-12 lg:mt-12 lg:pt-12">
+              <h1 className="text-xl lg:mt-12 pt-1 font-semibold text-gray-800 dark:text-white">
                 Livros
               </h1>
 
@@ -50,20 +42,42 @@ export function Bible() {
             </div>
 
             <div className="flex-1 mt-8 lg:mx-12 lg:mt-0">
+              <h1 className="text-2xl font-bold text-center text-gray-800 lg:text-5xl dark:text-white">
+                {version.name}
+              </h1>
+
+              <h3 className="mt-2 mb-6 text-2xl font-normal text-center text-gray-800 lg:text-2xl dark:text-white">
+                {version.description}
+              </h3>
               {version.books.map((book) => (
-                <div id="">
-                  <button className="flex items-center focus:outline-none">
-                    <h1 className="mx-4 text-xl text-gray-700 dark:text-white">
-                      {book.name}
-                    </h1>
-                  </button>
-                  <div className="flex my-4">
-                    {book.chapter.map((chapter) => (
+                <div id={book.name}>
+                  <h1 className="mx-4  text-3xl text-center text-gray-700 dark:text-violet-500">
+                    {Object.entries(ListBook).map(([bookName, bookIndex]) => {
+                      if (book.name === bookName) {
+                        return bookIndex;
+                      }
+                    })}
+                  </h1>
+                  {book.chapter.map((chapter) => (
+                    <div className="flex flex-col space-y-4">
                       <p className="max-w-4xl px-4 text-gray-500 dark:text-gray-300">
-                        {chapter.number}
+                        <span className="text-2xl font-semibold">
+                          Capítulo {chapter.number}
+                        </span>
                       </p>
-                    ))}
-                  </div>
+
+                      {chapter.verses.map((verse) => (
+                        <p className="max-w-6xl px-4 space-y-1 text-justify text-gray-500 dark:text-gray-300">
+                          <span className="font-semibold">
+                            {verse.verse}
+                            {verse.verseEnd ? `-${verse.verseEnd}` : ""}
+                          </span>{" "}
+                          {verse.text}
+                          <br />
+                        </p>
+                      ))}
+                    </div>
+                  ))}
                 </div>
               ))}
 
